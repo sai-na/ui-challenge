@@ -1,30 +1,53 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Bar() {
 
-    const [barWidth, setBarWidth] = useState("w-8/8")
-    const [barColor, setBarColor] = useState("bg-green-900")
+    const navigate = useNavigate()
 
-    const w = ["0.125%", "0.25%", "0.375%", "0.5%", "0.625%", "0.75%", "0.875%", "100%"]
+    const [barWidth, setBarWidth] = useState("w-full")
+
+    const [barColor, setBarColor] = useState("bg-emerald-600")
+
+    // const w = [0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]
+
 
     useEffect(() => {
-        for (let i = 8;i <= 1;i--) {
+        setTimeout(() => {
+            setBarWidth("w-5/6")
+            setBarColor("bg-emerald-600")
+        }, 1000)
+        setTimeout(() => {
+            setBarWidth("w-4/6")
+            setBarColor("bg-emerald-600")
+        }, 2000)
+        setTimeout(() => {
+            setBarWidth("w-3/6")
+            setBarColor("bg-emerald-600")
+        }, 3000)
+        setTimeout(() => {
+            setBarWidth("w-2/6")
+            setBarColor("bg-orange-600")
+        }, 4000)
+        setTimeout(() => {
+            setBarWidth("w-1/6")
+            setBarColor("bg-red-600")
+        }, 5000)
+        setTimeout(() => {
+            setBarWidth("w-0")
+            navigate("/")
+        }, 6000)
 
-
-            setTimeout(() => {
-                document.getElementById("bar").style.width = w[i]
-                console.log(w[i])
-            }, 800)
-        }
-        // const timer = setTimeout(() => {
-        //     console.log('This will run after 1 second!')
-        // }, 800)
-        // return () => clearTimeout(timer)
     }, [])
 
+
+
+
     return (
-        <div className="mt-2 w-full flex justify-start bg-gray-600 ">
-            <div id='bar' className=" w-[80%]   bg-green-900 h-full  text-center "><div className="inline-block"></div></div>
+        <div className="mt-2 w-full  flex justify-start bg-gray-600 ">
+            <div id='bar' className={`  ${barWidth}   ${barColor}    h-full  text-center `}>
+
+                <div className="inline-block"></div></div>
         </div>
     )
 }
